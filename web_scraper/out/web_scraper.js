@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const cheerio_1 = __importDefault(require("cheerio"));
-const Page = require('./page');
 const rp = require('request-promise');
+const Page = require('./page');
 function print(data) {
     console.log(data);
 }
@@ -78,6 +78,7 @@ async function findPath(startUrl, endUrl, maxChecks, layerMax) {
                 const checkingPage = layer[i];
                 if (!completeRecord.includes(checkingPage.url)) {
                     completeRecord.push(checkingPage.url);
+                    print(`Checking inside ${checkingPage.url}`);
                     await checkingPage.webScrape(completeRecord); // REAL
                     // checkingPage.fakeWebScrape(all); // FAKE
                     for (let j = 0; j < Math.min(checkingPage.containedUrls.length, maxChecks) && !isFound; j++) {

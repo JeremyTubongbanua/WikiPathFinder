@@ -1,6 +1,6 @@
 import cheerio, { Element } from "cheerio";
-const Page = require('./page');
 const rp = require('request-promise');
+const Page = require('./page');
 
 function print(data: any) {
     console.log(data);
@@ -34,8 +34,6 @@ async function webScrape(url: string): Promise<string[]> {
     });
     return construct;
 }
-
-
 
 async function findPath(startUrl: string, endUrl: string, maxChecks: number, layerMax: number): Promise<string[] | null> {
     // SETTINGS ================================
@@ -85,6 +83,7 @@ async function findPath(startUrl: string, endUrl: string, maxChecks: number, lay
                 const checkingPage: Page = layer[i];
                 if (!completeRecord.includes(checkingPage.url)) {
                     completeRecord.push(checkingPage.url);
+                    print(`Checking inside ${checkingPage.url}`);
                     await checkingPage.webScrape(completeRecord); // REAL
                     // checkingPage.fakeWebScrape(all); // FAKE
                     for (let j: number = 0; j < Math.min(checkingPage.containedUrls!.length, maxChecks) && !isFound; j++) {
