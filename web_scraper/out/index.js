@@ -92,7 +92,7 @@ async function work() {
                     }
                 }
             }
-            layers.push(construct.filter((page) => !completeRecord.includes(page.url)));
+            layers.push(construct);
             index++;
         }
     }
