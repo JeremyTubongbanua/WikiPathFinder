@@ -8,7 +8,7 @@ const request = require('request');
 function print(data) {
     console.log(data);
 }
-function webScrape(url) {
+async function webScrape(url) {
     const prefix = 'https://en.wikipedia.org';
     var construct = [];
     request(url, (err, res, html) => {
@@ -19,6 +19,7 @@ function webScrape(url) {
                 if (el.attribs != undefined) {
                     const link = el.attribs.href;
                     if (link.startsWith('/')) {
+                        print(`${el.attribs.title} ${el.attribs.href}`);
                         construct.push(`${prefix}${link}`);
                     }
                 }
