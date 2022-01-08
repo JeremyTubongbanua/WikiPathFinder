@@ -13,8 +13,8 @@ class Page {
         this.containedUrls = containedUrls;
         this.path = [];
     }
-    async webScrape() {
-        this.containedUrls = await webScrape(this.url);
+    async webScrape(completeRecord) {
+        this.containedUrls = (await webScrape(this.url)).filter((url) => !completeRecord.includes(url));
     }
     setPath(path) {
         this.path.push(...path);
@@ -49,7 +49,7 @@ const all = [a, b, c, d, e, f, g, h, i, j, k, l];
 async function work() {
     const startUrl = 'https://en.wikipedia.org/wiki/Among_Us';
     const start = new Page(startUrl);
-    const endUrl = 'https://en.wikipedia.org/wiki/University_of_Waterloo';
+    const endUrl = 'https://en.wikipedia.org/wiki/Video_game_development';
     const end = new Page(endUrl);
     const maxChecks = 400;
     start.setPath([startUrl]);
@@ -71,13 +71,15 @@ async function work() {
         }
         else {
             var construct = [];
-            for (let i = 0; i < layer.length && !isFound && i < maxChecks; i++) {
+            for (let i = 0; i < Math.min(layer.length, maxChecks) && !isFound; i++) {
                 const checkingPage = layer[i];
                 if (!completeRecord.includes(checkingPage.url)) {
                     completeRecord.push(checkingPage.url);
-                    await checkingPage.webScrape();
-                    for (let j = 0; j < checkingPage.containedUrls.length && j < maxChecks && !isFound; j++) {
+                    await checkingPage.webScrape(completeRecord);
+                    for (let j = 0; j < Math.min(checkingPage.containedUrls.length, maxChecks) && !isFound; j++) {
                         const newPage = new Page(checkingPage.containedUrls[j]);
+                        if (construct.find((page) => page.url == newPage.url))
+                            continue;
                         print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
                         newPage.setPath([...checkingPage.getPath(), newPage.url]);
                         construct.push(newPage);
@@ -90,7 +92,7 @@ async function work() {
                     }
                 }
             }
-            layers.push(construct);
+            layers.push(construct.filter((page) => !completeRecord.includes(page.url)));
             index++;
         }
     }

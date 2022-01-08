@@ -18,8 +18,8 @@ export default class Page {
         this.path = [];
     }
 
-    async webScrape() {
-        this.containedUrls = await webScrape(this.url);
+    async webScrape(completeRecord: string[]) {
+        this.containedUrls = (await webScrape(this.url)).filter((url: string) => !completeRecord.includes(url));
     }
 
     setPath(path: string[]) {
@@ -66,7 +66,7 @@ async function work() {
 
     // const endUrl: string = 'K'; // FAKE
     // const end: Page = new Page(endUrl); // FAKE
-    const endUrl: string = 'https://en.wikipedia.org/wiki/University_of_Waterloo'; // REAL
+    const endUrl: string = 'https://en.wikipedia.org/wiki/Video_game_development'; // REAL
     const end: Page = new Page(endUrl); // REAL
 
     const maxChecks: number = 400; // DEBUG
@@ -98,17 +98,16 @@ async function work() {
         } else {
             // create next layer
             var construct: Page[] = [];
-            for (let i: number = 0; i < layer.length && !isFound && i < maxChecks; i++) {
+            for (let i: number = 0; i < Math.min(layer.length, maxChecks) && !isFound; i++) {
                 const checkingPage: Page = layer[i];
                 if (!completeRecord.includes(checkingPage.url)) {
                     completeRecord.push(checkingPage.url);
-                    await checkingPage.webScrape(); // REAL
+                    await checkingPage.webScrape(completeRecord); // REAL
                     // checkingPage.fakeWebScrape(all); // FAKE
-                    for (let j: number = 0; j < checkingPage.containedUrls!.length && j < maxChecks && !isFound; j++) {
+                    for (let j: number = 0; j < Math.min(checkingPage.containedUrls!.length, maxChecks) && !isFound; j++) {
                         const newPage: Page = new Page(checkingPage.containedUrls![j]);
+                        if (construct.find((page) => page.url == newPage.url)) continue;
                         print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
-                        // newPage.fakeWebScrape(all); // FAKE
-                        // newPage.webScrape(); // REAL
                         newPage.setPath([...checkingPage.getPath(), newPage.url]);
                         construct.push(newPage);
                         if (newPage.url == end.url) {
@@ -120,7 +119,8 @@ async function work() {
                     }
                 }
             }
-            layers.push(construct);
+
+            layers.push(construct.filter((page) => !completeRecord.includes(page.url)));
             index++;
         }
     }
