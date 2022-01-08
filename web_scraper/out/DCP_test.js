@@ -1,9 +1,11 @@
+const webScrape = require('./index');
+
 async function main() {
     const compute = require('dcp/compute');
     // Rest of the code will go in the following sections:
     /* INPUT DATA */
       /* INPUT SET */
-    const inputSet = Array.from('yelling!');
+    webScrape();
   
     /* WORK FUNCTION */
       /* WORK FUNCTION */
@@ -13,7 +15,7 @@ async function main() {
     }
     /* COMPUTE FOR */
         /* COMPUTE FOR */
-    const job = compute.for(inputSet, workFunction);
+    const job = compute.for(workFunction);
     job.public.name = 'toUpperCase';
   
       // SKIP IF: you do not need a compute group

@@ -12,7 +12,8 @@ async function webScrape(url) {
     const prefix = 'https://en.wikipedia.org';
     const request = await rp({ url: url, timeout: 300000, json: true, headers: { 'Connection': 'keep-alive' } });
     const $ = cheerio_1.default.load(request);
-    const content = $('.mw-parser-output');
+    const content = $('.mw-parser-output'); // . is class and # is id
+    // print(content.html());
     const construct = [];
     await content.find('a').each((i, el) => {
         if (el.attribs != undefined) {
@@ -26,7 +27,9 @@ async function webScrape(url) {
                     }
                 });
                 if (link.startsWith('/wiki') && !hasBlackList) {
+                    // print(`${el.attribs.title} ${el.attribs.href}`);
                     construct.push(`${prefix}${link}`);
+                    // return `${prefix}${link}`;
                 }
             }
         }
