@@ -49,9 +49,9 @@ const all = [a, b, c, d, e, f, g, h, i, j, k, l];
 async function work() {
     const startUrl = 'https://en.wikipedia.org/wiki/Among_Us';
     const start = new Page(startUrl);
-    const endUrl = 'https://en.wikipedia.org/wiki/Comic_book';
+    const endUrl = 'https://en.wikipedia.org/wiki/University_of_Waterloo';
     const end = new Page(endUrl);
-    const maxChecks = 75;
+    const maxChecks = 400;
     start.setPath([startUrl]);
     end.setPath([endUrl]);
     const layers = [];

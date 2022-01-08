@@ -66,10 +66,10 @@ async function work() {
 
     // const endUrl: string = 'K'; // FAKE
     // const end: Page = new Page(endUrl); // FAKE
-    const endUrl: string = 'https://en.wikipedia.org/wiki/Comic_book'; // REAL
+    const endUrl: string = 'https://en.wikipedia.org/wiki/University_of_Waterloo'; // REAL
     const end: Page = new Page(endUrl); // REAL
 
-    const maxChecks: number = 75; // DEBUG
+    const maxChecks: number = 400; // DEBUG
     // const maxChecks: number = 1000; // REAL (for now)
 
     // SETTINGS ================================
@@ -106,8 +106,6 @@ async function work() {
                     // checkingPage.fakeWebScrape(all); // FAKE
                     for (let j: number = 0; j < checkingPage.containedUrls!.length && j < maxChecks && !isFound; j++) {
                         const newPage: Page = new Page(checkingPage.containedUrls![j]);
-                        // if (!completeRecord.includes(newPage.url)) {
-                        // completeRecord.push(newPage.url);
                         print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
                         // newPage.fakeWebScrape(all); // FAKE
                         // newPage.webScrape(); // REAL
@@ -119,7 +117,6 @@ async function work() {
                             isFound = true;
                             break;
                         }
-                        // }
                     }
                 }
             }
