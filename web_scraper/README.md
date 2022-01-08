@@ -6,6 +6,8 @@
 
 If `npm install` doesn't work:
 
+-   type script `npm i -g type-script`
 -   cheerio (for web scraping): `npm i cheerio`
 -   require() function: `npm i --save-dev @types/node`
--   request-promise-native `npm install request-promise`
+-   request-promise-native `npm i request-promise`
+-   dcp: `npm i dcp-client`
