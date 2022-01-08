@@ -46,8 +46,6 @@ const j = new Page('J', ['K']);
 const k = new Page('K', []);
 const l = new Page('L', []);
 const all = [a, b, c, d, e, f, g, h, i, j, k, l];
-
-
 async function work() {
     const startUrl = 'https://en.wikipedia.org/wiki/Among_Us';
     const start = new Page(startUrl);
@@ -102,5 +100,4 @@ async function work() {
 async function main() {
     work();
 }
-
-module.exports = main();
+main();
