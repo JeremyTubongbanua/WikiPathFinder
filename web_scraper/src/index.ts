@@ -1,5 +1,3 @@
-import { stat } from "fs";
-
 const webScrape = require('./web_scraper');
 
 
@@ -56,20 +54,20 @@ const l: Page = new Page('L', []);
 const all: Page[] = [a, b, c, d, e, f, g, h, i, j, k, l];
 
 
-async function work() {
+async function findPath(startUrl: string, endUrl: string, maxChecks: number, layerMax: number): Promise<string[] | null> {
     // SETTINGS ================================
 
     // const startUrl: string = 'A'; // FAKE
     // const start: Page = new Page(startUrl); // FAKE
-    const startUrl: string = 'https://en.wikipedia.org/wiki/Among_Us'; // REAL
+    // const startUrl: string = 'https://en.wikipedia.org/wiki/Among_Us'; // REAL
     const start: Page = new Page(startUrl); //REAL
 
     // const endUrl: string = 'K'; // FAKE
     // const end: Page = new Page(endUrl); // FAKE
-    const endUrl: string = 'https://en.wikipedia.org/wiki/Video_game_development'; // REAL
+    // const endUrl: string = 'https://en.wikipedia.org/wiki/Video_game_development'; // REAL
     const end: Page = new Page(endUrl); // REAL
 
-    const maxChecks: number = 400; // DEBUG
+    // const maxChecks: number = 50; // DEBUG
     // const maxChecks: number = 1000; // REAL (for now)
 
     // SETTINGS ================================
@@ -82,18 +80,20 @@ async function work() {
     const completeRecord: string[] = [];
     var isFound: boolean = false;
     var index: number = 0;
+    var foundPath: string[] | null = null;
 
     layers.push([start]);
 
-    while (!isFound) {
+    while (!isFound && index <= layerMax) {
         const layer: Page[] = layers[index];
         // print(`Layer [${index}]: ${layer.map((page) => page.url)}`);
         if (layer.length == 0) break;
         const possibleFind: Page | undefined = layer.find((page) => page.url == end.url);
         if (possibleFind) {
             // check current layer
-            print("PATH FOUND");
+            print(`PATH FOUND: [Clicks :${index}]`);
             print(possibleFind.getPath());
+            foundPath = possibleFind.getPath();
             isFound = true;
         } else {
             // create next layer
@@ -111,27 +111,20 @@ async function work() {
                         newPage.setPath([...checkingPage.getPath(), newPage.url]);
                         construct.push(newPage);
                         if (newPage.url == end.url) {
-                            print("PATH FOUND");
-                            print(newPage.getPath()); // DEBUG
+                            print(`PATH FOUND: [Clicks :${index + 1}]`);
+                            print(newPage.getPath());
+                            foundPath = newPage.getPath();
                             isFound = true;
                             break;
                         }
                     }
                 }
             }
-
             layers.push(construct);
             index++;
         }
     }
-    // print(layers);
-
+    return foundPath;
 }
 
-async function main() {
-    // const webScraped = await webScrape('https://en.wikipedia.org/wiki/Among_Us');
-    // print(webScraped);
-    work();
-}
-
-main();
+module.exports = findPath;
