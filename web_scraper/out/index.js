@@ -1,4 +1,5 @@
 "use strict";
+const webScrape = require('./web_scraper');
 function print(data) {
     console.log(data);
 }
@@ -7,36 +8,42 @@ class Page {
     containedUrls;
     constructor(url, containedUrls) {
         this.url = url;
-        this.containedUrls = containedUrls;
+        if (containedUrls == undefined) {
+            this.containedUrls = webScrape(url);
+        }
+        else {
+            this.containedUrls = containedUrls;
+        }
     }
 }
-const a = new Page('A', ['B', 'C']);
-const b = new Page('B', ['D', 'E', 'K']);
-const c = new Page('C', ['F', 'G']);
-const d = new Page('D', ['H', 'I']);
-const e = new Page('E', ['J']);
-const f = new Page('F', ['J']);
-const g = new Page('G', ['L', 'K']);
-const h = new Page('H', []);
-const i = new Page('I', []);
-const j = new Page('J', ['K']);
-const k = new Page('K', []);
-const l = new Page('L', []);
-const all = [a, b, c, d, e, f, g, h, i, j, k, l];
-function fakeWebScrape(url) {
-    const page = all.find((p) => p.url == url);
-    if (page != null) {
-        return page.containedUrls;
-    }
-    else {
-        return [];
+function work() {
+    const startUrl = 'https://en.wikipedia.org/wiki/Among_Us';
+    const start = new Page(startUrl);
+    const endUrl = 'https://en.wikipedia.org/wiki/Mafia_(party_game)';
+    const end = new Page(endUrl);
+    const layers = [];
+    var isFound = false;
+    var index = 0;
+    while (!isFound) {
+        const layer = layers[index];
+        if (layer.find((page) => page.url == end.url)) {
+            isFound = true;
+        }
+        else {
+            var construct = [];
+            for (let i = 0; i < layer.length; i++) {
+                for (let j = 0; j < layer[i].containedUrls.length; j++) {
+                    const newPage = new Page(layer[i].containedUrls[j]);
+                    construct.push(newPage);
+                }
+            }
+            layers.push(construct);
+            index++;
+        }
     }
 }
-function createPage(url) {
-    return new Page(url, fakeWebScrape(url));
-}
-function main() {
-    const webScrape = require('./web_scraper');
-    webScrape('https://en.wikipedia.org/wiki/Among_Us');
+async function main() {
+    const webScraped = await webScrape('https://en.wikipedia.org/wiki/Among_Us');
+    print(webScraped.length);
 }
 main();
