@@ -79,7 +79,7 @@ function main() {
     // print(layers);
 
     const webScrape = require('./web_scraper');
-    print(webScrape('https://en.wikipedia.org/wiki/Among_Us'));
+    webScrape('https://en.wikipedia.org/wiki/Among_Us');
 
 }
 

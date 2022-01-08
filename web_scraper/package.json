@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.8"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "node": "node out/index.js"
+  }
+}

@@ -19,7 +19,7 @@ async function webScrape(url: string): Promise<string[]> {
                 if (el.attribs != undefined) {
                     const link: string = el.attribs.href;
                     if (link.startsWith('/')) {
-                        // print(`${el.attribs.title} ${el.attribs.href}`);
+                        print(`${el.attribs.title} ${el.attribs.href}`);
                         construct.push(`${prefix}${link}`);
                     }
                 }
