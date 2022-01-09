@@ -86,7 +86,7 @@ async function findPath(startUrl: string, endUrl: string, maxChecks: number, lay
                     print(`Checking inside ${checkingPage.url}`);
                     await checkingPage.webScrape(completeRecord); // REAL
                     // checkingPage.fakeWebScrape(all); // FAKE
-                    for (let j: number = 0; j < Math.min(checkingPage.containedUrls!.length, maxChecks) && !isFound; j++) {
+                    for (let j: number = 0; j < checkingPage.containedUrls!.length && !isFound; j++) {
                         const newPage: Page = new Page(checkingPage.containedUrls![j]);
                         if (construct.find((page) => page.url == newPage.url)) continue;
                         // print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
