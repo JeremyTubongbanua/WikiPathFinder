@@ -85,11 +85,11 @@ async function findPath(startUrl, endUrl, maxChecks, layerMax) {
                         const newPage = new Page(checkingPage.containedUrls[j]);
                         if (construct.find((page) => page.url == newPage.url))
                             continue;
-                        // print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
+                        print(`Scraping [${index}][${i}/${Math.min(layer.length, maxChecks)}][${j}]: ${newPage.url}`);
                         newPage.setPath([...checkingPage.getPath(), newPage.url]);
                         construct.push(newPage);
                         if (newPage.url == end.url) {
-                            // print(`PATH FOUND: [Clicks :${index + 1}]`);
+                            print(`PATH FOUND: [Clicks: ${index + 1}]`);
                             // print(newPage.getPath());
                             foundPath = newPage.getPath();
                             isFound = true;

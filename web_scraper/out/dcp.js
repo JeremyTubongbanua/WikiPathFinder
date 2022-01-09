@@ -103,16 +103,24 @@ async function dcp(start, end, linksW) {
         console.log(` - Job accepted with id: ${job.id}`);
     });
     job.on('result', (ev) => {
-        // console.log(` - Received result`);
-        // console.log(ev);
+        console.log(` - Received result`);
+        console.log(ev);
     });
     /* PROCESS RESULTS */
+    console.log('Started job.exec()');
     let resultSet = await job.exec();
     const result = Array.from(resultSet).length >= 1 ? Array.from(resultSet)[0] : [];
-    // console.log(result);
-    // console.log(' - Job Complete');
+    console.log(result);
+    console.log(' - Job Complete');
     return result;
 }
+/**
+ *
+ * @param start Start URL (string) Eg: 'URL1'
+ * @param end  End Desired Wikipedia URL (string) Eg: 'URL2'
+ * @param linksW JSON Object of wikipedia pages Eg: {'URL1': [urls...], 'URL2': [urls...]}
+ * @returns
+ */
 async function runDcp(start, end, linksW) {
     await require('dcp-client').init('https://scheduler.distributed.computer');
     const r = await dcp(start, end, linksW);
