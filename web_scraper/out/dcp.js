@@ -112,7 +112,8 @@ async function dcp() {
     });
     /* PROCESS RESULTS */
     let resultSet = await job.exec();
-    console.log(resultSet);
+    const result = Array.from(resultSet).length >= 1 ? Array.from(resultSet)[0] : [];
+    console.log(result);
     console.log(' - Job Complete');
 }
 require('dcp-client').init('https://scheduler.distributed.computer').then(dcp);
