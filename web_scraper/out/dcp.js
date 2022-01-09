@@ -103,14 +103,14 @@ async function dcp(start, end, linksW) {
         console.log(` - Job accepted with id: ${job.id}`);
     });
     job.on('result', (ev) => {
-        console.log(` - Received result`);
-        console.log(ev);
+        // console.log(` - Received result`);
+        // console.log(ev);
     });
     /* PROCESS RESULTS */
     let resultSet = await job.exec();
     const result = Array.from(resultSet).length >= 1 ? Array.from(resultSet)[0] : [];
-    console.log(result);
-    console.log(' - Job Complete');
+    // console.log(result);
+    // console.log(' - Job Complete');
     return result;
 }
 async function runDcp(start, end, linksW) {

@@ -11,3 +11,4 @@ If `npm install` doesn't work:
 -   require() function: `npm i --save-dev @types/node`
 -   request-promise-native `npm i request-promise`
 -   dcp: `npm i dcp-client`
+-   `npm i xmlhttprequest`
