@@ -14,12 +14,8 @@ async function dcp() {
         'K': [],
         'L': [],
     };
-    const start = 'A';
-    const end = 'K';
     // findPath(startUrl, endUrl, 100);
     const compute = require('dcp/compute');
-    /* INPUT SET */
-    const inputSet = links[start];
     /* WORK FUNCTION */
     async function workFn(startUrl, endUrl, wikipediaPages, maxLayers) {
         // @ts-ignore
@@ -70,7 +66,7 @@ async function dcp() {
                 }
             }
             // print(foundPath);
-            return foundPath.length == 0 ? null : foundPath;
+            return foundPath.length == 0 ? [] : foundPath;
         }
         // var results = [];
         // for (let i = 0; i < startUrls.length; i++) {
@@ -95,7 +91,14 @@ async function dcp() {
     //     'K': [],
     //     'L': [],
     // }, 7]);
-    const job = compute.for(inputSet, workFn, [end, links, 7]);
+    const start = 'Gamer';
+    // const inputSet = linksW[start];
+    const inputSet = [start];
+    const end = 'Google';
+    // console.log(inputSet);
+    // console.log(end);
+    // console.log(linksW[start]);
+    const job = compute.for(inputSet, workFn, [end, linksW, 1000]);
     job.public.name = 'wikiRace';
     // SKIP IF: you do not need a compute group
     job.computeGroups = [{ joinKey: 'hackathon', joinSecret: 'dcp2021' }];
