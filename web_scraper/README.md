@@ -28,7 +28,7 @@ WikiRacing is a commonly known game where 2 people start at the same `START_WIKI
 
 ## How to Use
 
-0. Install all necessary node modules
+1. Install all necessary node modules
 -   cheerio (for web scraping): `npm i cheerio`
 -   request-promise `npm i request-promise`
 -   dcp: `npm i dcp-client`
