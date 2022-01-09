@@ -1,0 +1,60 @@
+.bg-book{
+    background-image: url(../images/book.png);
+    background-size:cover;
+    background-position: center;
+}
+
+#mainNav{
+    background-color: white; 
+}
+
+#navbar-toggler{
+    margin-right:20px;
+}
+
+#navbar-nav{
+    padding-left:20px;
+}
+
+
+#navbar-brand{
+    padding-left:20px;
+    color:black;
+    font-family: "Open sans";
+    text-decoration: none;
+}
+
+#nav-item-top{
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+#nav-item{
+    padding: 5px 0;
+}
+
+.link-nav{
+    color: #b0aaa9;
+    font-family: "Open sans";
+    text-decoration: none;
+}
+
+h1{
+    color: white;
+    font-weight: bold;
+    font-size: 80pt;
+    font-family: "Open sans";
+}
+
+.sub-heading{
+    color:white;
+    font-size: 25pt;
+    font-weight: 100;
+}
+
+a:hover{
+    color:black;
+}
+
+.contain{
+    width:700px;
+}

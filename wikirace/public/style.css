@@ -1,0 +1,144 @@
+@font-face {
+    font-family: "Open sans";
+    src: url(Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+@font-face {
+    font-family: "Open sans italic";
+    src: url(Open_Sans/OpenSans-Italic-VariableFont_wdth\,wght.ttf);
+}
+
+
+.brand-navbar{
+    font-weight: bold;
+    font-size: 20pt;
+    text-shadow: 1px;
+}
+
+#navbar-toggler{
+    color:black;
+    font-family: "Open sans";
+    font-weight:900;
+}
+
+
+.link-nav{
+    font-weight: 900;
+
+}
+
+#button{
+    font-family: "Open sans";
+    background-color: #0085a1;;
+    color:white;
+    font-weight: bold;
+    text-shadow: 1px;
+    padding: 1em 2em;
+}
+
+h2{
+    font-family: "Open sans";
+    font-weight: bold;
+    text-shadow: 1px;
+    font-size: 35pt;
+}
+h3{
+    font-family: "Open sans";
+    font-size:30pt;
+    font-weight:100;
+}
+h4{
+    font-family: "Lora";
+    
+}
+
+.hover:hover{
+    color:#0085a1;
+}
+
+#button:hover{
+    background-color: #025869;;
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    padding:2em;
+}
+
+.box-2{
+    display:flex;
+    justify-content: center;
+}
+
+#mail{
+    background-image: url(images/mail_black.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#twitter{
+    background-image: url(images/twitter_black.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#facebook{
+    background-image: url(images/facebook_black.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#github{
+    background-image: url(images/github_black.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#mail:hover{
+    background-image: url(images/mail.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#twitter:hover{
+    background-image: url(images/twitter.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#facebook:hover{
+    background-image: url(images/facebook.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+#github:hover{
+    background-image: url(images/github.png);
+    background-position: center;
+    background-size: cover;
+    width: 90px;
+    height:90px;
+    margin: 0 15px;
+}
+
+textarea{
+    background-color: red;
+}
+
+#path-find{
+    width:100%;
+}

@@ -1,0 +1,68 @@
+.bg-wiki{
+    background-image: url(../images/wiki.png);
+    background-size:cover;
+    background-position: center;
+}
+.bg-code{
+    background-image: url(../images/code-bg.png);
+    background-size:cover;
+    background-position: center;
+}
+
+#navbarNav{
+    padding-right: 100px;
+}
+
+#mainNav{
+    padding: 20px 0;
+}
+
+.scrolled-down{
+  transform:translateY(-100%); transition: all 0.3s ease-in-out;
+}
+.scrolled-up{
+  transform:translateY(0); transition: all 0.3s ease-in-out;
+}
+
+#navbar-brand{
+    padding-left:100px;
+    font-family: "Open sans";
+    text-decoration: none;
+}
+
+.link-nav{
+    padding: 0 30px;
+    font-family: "Open sans";
+    text-decoration: none;
+}
+
+.link-nav-white{
+    color:white;
+}
+.link-nav-white:hover{
+    color: #b0aaa9;
+}
+.link-nav-black{
+    color:black;
+}
+.link-nav-black:hover{
+    color: #0085a1;
+}
+
+h1{
+    color: white;
+    font-weight: bold;
+    font-size: 80pt;
+    font-family: "Open sans";
+}
+
+.sub-heading{
+    color:white;
+    font-size: 25pt;
+    font-weight: 100;
+}
+
+.contain{
+    width:900px;
+    box-shadow: 10px;
+}
