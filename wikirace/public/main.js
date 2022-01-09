@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if(targetWidth >= window.innerWidth){
     el_autohide.classList.remove("fixed-top");
   }
-
+zxc
   if(el_autohide){
     var last_scroll_top = 0;
     window.addEventListener('scroll', function() {
