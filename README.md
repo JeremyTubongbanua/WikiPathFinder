@@ -28,11 +28,17 @@ WikiRacing is a commonly known game where 2 people start at the same `START_WIKI
 
 ## How to Use
 
-1. Start terminal program via `node out/index.js`
-2. Enter start URL (eg: `https://en.wikipedia.org/wiki/Gamer`)
-3. Enter end URL (eg: `https://en.wikipedia.org/wiki/Google`)
-4. Use DCP (y/n) ? (eg: `y`)
-5. Obtain results. (`[]` is path not found)
+1. Install all necessary node modules
+-   cheerio (for web scraping): `npm i cheerio`
+-   request-promise `npm i request-promise`
+-   dcp: `npm i dcp-client`
+-   prompt-sync `npm install prompt-sync`
+-   require() function: `npm i --save-dev @types/node`
+2. Start terminal program via `node out/index.js`
+3. Enter start URL (eg: `https://en.wikipedia.org/wiki/Gamer`)
+4. Enter end URL (eg: `https://en.wikipedia.org/wiki/Google`)
+5. Use DCP (y/n) ? (eg: `y`)
+6. Obtain results. (`[]` is path not found)
 
 ## Example Usage (with DCP)
 
