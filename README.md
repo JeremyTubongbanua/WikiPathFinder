@@ -88,11 +88,12 @@ If `npm install` doesn't work:
 
 -   type script `npm i -g type-script`
 -   cheerio (for web scraping): `npm i cheerio`
--   require() function: `npm i --save-dev @types/node`
 -   request-promise `npm i request-promise`
 -   request-promise types `npm i --save-dev @types/request-promise`
--   dcp: `npm i dcp-client`
--   prompt-sync `npm install prompt-sync`
+-   prompt-sync `npm i prompt-sync`
+-   prompt-sync types `npm i --save-dev @types/prompt-sync`
+    <!-- -   require() function: `npm i --save-dev @types/node` -->
+    <!-- -   dcp: `npm i dcp-client` -->
 
 ## How we use DCP
 

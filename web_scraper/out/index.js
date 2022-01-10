@@ -17,7 +17,7 @@ async function main() {
     const end = prompt('Enter END wikipedia url: '); // https://en.wikipedia.org/wiki/Google
     const maxChecks = 1000;
     const layerMax = 5;
-    const result = await (0, web_scraper_1.findPath)(start, end, 1000, 5);
+    const result = await (0, web_scraper_1.findPath)(start, end, maxChecks, layerMax);
     console.log(result);
     // const useDcp = prompt('Use DCP to path find? (y/n): ');
     // if (useDcp.toLowerCase() == 'y') {
