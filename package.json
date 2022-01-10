@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "dcp-client": "^4.1.16",
+    "prompt-sync": "^4.2.0",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "@types/prompt-sync": "^4.1.1",
+    "@types/request-promise": "^4.1.48"
+  }
+}
