@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Page {
     url; // the URL of this wiki page
     containedUrls; // the URLs that this wiki page has
@@ -28,4 +29,4 @@ class Page {
         }
     }
 }
-module.exports = Page;
+exports.default = Page;

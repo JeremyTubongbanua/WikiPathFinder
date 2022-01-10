@@ -7,7 +7,9 @@
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.8"
+    "@types/node": "^17.0.8",
+    "@types/prompt-sync": "^4.1.1",
+    "@types/request-promise": "^4.1.48"
   },
   "scripts": {
     "tsc": "tsc",
