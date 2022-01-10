@@ -84,6 +84,7 @@ If `npm install` doesn't work:
 -   cheerio (for web scraping): `npm i cheerio`
 -   require() function: `npm i --save-dev @types/node`
 -   request-promise `npm i request-promise`
+-   request-promise types `npm i --save-dev @types/request-promise`
 -   dcp: `npm i dcp-client`
 -   prompt-sync `npm install prompt-sync`
 

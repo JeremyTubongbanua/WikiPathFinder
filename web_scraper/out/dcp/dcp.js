@@ -1,7 +1,5 @@
-async function dcp(start: string, end: string, linksW: any) {
-
-
-
+"use strict";
+async function dcp(start, end, linksW) {
     // var links: any = {
     //     'A': ['B', 'C'],
     //     'B': ['D', 'E'],
@@ -15,27 +13,23 @@ async function dcp(start: string, end: string, linksW: any) {
     //     'K': [],
     //     'L': [],
     // };
-
     // findPath(startUrl, endUrl, 100);
     const compute = require('dcp/compute');
-
     /* WORK FUNCTION */
-    async function workFn(startUrl: string, endUrl: string, wikipediaPages: any, maxLayers: number) {
+    async function workFn(startUrl, endUrl, wikipediaPages, maxLayers) {
         // @ts-ignore
         progress();
-        function findPath(startUrl: string, endUrl: string, wikipediaPages: any, maxLayers: number): string[] | null {
-            var isFound: boolean = false;
-            var index: number = 0;
-            var foundPath: string[] = [];
-            var alreadyChecked: string[] = [];
+        function findPath(startUrl, endUrl, wikipediaPages, maxLayers) {
+            var isFound = false;
+            var index = 0;
+            var foundPath = [];
+            var alreadyChecked = [];
             const layers = [];
             layers.push([{ url: startUrl, urls: [...wikipediaPages[startUrl]], cameFrom: [] }]);
-
-
             while (!isFound) {
-                const pageObjsToCheck: any = layers[index];
-                if (pageObjsToCheck.length == 0) break;
-
+                const pageObjsToCheck = layers[index];
+                if (pageObjsToCheck.length == 0)
+                    break;
                 // check if this layers' children has endUrl
                 for (let i = 0; i < pageObjsToCheck.length; i++) {
                     const pageObjToCheck = pageObjsToCheck[i];
@@ -50,9 +44,8 @@ async function dcp(start: string, end: string, linksW: any) {
                     //     break;
                     // }
                 }
-
                 // build next layer
-                const construct: any = [];
+                const construct = [];
                 for (let i = 0; i < pageObjsToCheck.length; i++) {
                     const pageObjToCheck = pageObjsToCheck[i];
                     const urlsToCheck = pageObjToCheck.urls;
@@ -81,9 +74,8 @@ async function dcp(start: string, end: string, linksW: any) {
         // }
         return findPath(startUrl, endUrl, wikipediaPages, maxLayers);
         // return [startUrl]
-    };
-
-
+    }
+    ;
     /* COMPUTE FOR */
     // const job = compute.for(inputSet, workFn, ['K', {
     //     'A': ['B', 'C'],
@@ -102,46 +94,38 @@ async function dcp(start: string, end: string, linksW: any) {
     // console.log(end);
     // console.log(linksW[start]);
     const inputSet = [start];
-
     const job = compute.for(inputSet, workFn, [end, linksW, 1000]);
     job.public.name = 'wikiRace';
-
     // SKIP IF: you do not need a compute group
     job.computeGroups = [{ joinKey: 'hackathon', joinSecret: 'dcp2021' }];
-
     // Not mandatory console logs for status updates
     job.on('accepted', () => {
         console.log(` - Job accepted with id: ${job.id}`);
     });
-    job.on('result', (ev: any) => {
+    job.on('result', (ev) => {
         console.log(` - Received result`);
         console.log(ev);
     });
-
     /* PROCESS RESULTS */
     console.log('Started job.exec()');
     let resultSet = await job.exec();
     const result = Array.from(resultSet).length >= 1 ? Array.from(resultSet)[0] : [];
     console.log(result);
     console.log(' - Job Complete');
-
     return result;
 }
-
 /**
- * 
+ *
  * @param start Start URL (string) Eg: 'URL1'
  * @param end  End Desired Wikipedia URL (string) Eg: 'URL2'
  * @param linksW JSON Object of wikipedia pages Eg: {'URL1': [urls...], 'URL2': [urls...]}
- * @returns 
+ * @returns
  */
-async function runDcp(start: string, end: string, linksW: any) {
+async function runDcp(start, end, linksW) {
     await require('dcp-client').init('https://scheduler.distributed.computer');
     const r = await dcp(start, end, linksW);
     return r;
     // require('dcp-client').init('https://scheduler.distributed.computer');
     // dcp(start, end, linksW)
 }
-
-// runDcp();
 module.exports.runDcp = runDcp;
